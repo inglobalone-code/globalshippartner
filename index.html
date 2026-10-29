@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <meta name="description" content="Shop smart with BoldCart. Modern finds for everyday living.">
+  <title>BoldCart — Shop Smart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="announcement">WELCOME TO BOLDCART <span>•</span> Smart finds. Straightforward shopping.</div>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="BoldCart home"><span class="brand-mark">B</span> BOLDCART<span class="brand-dot">.</span></a>
+    <div class="search-wrap"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search products, brands and more" aria-label="Search products"><kbd>↵</kbd></div>
+    <nav class="header-actions">
+      <a href="#benefits" class="header-link">Why BoldCart</a>
+      <button id="cartOpen" class="cart-button" aria-label="Open shopping cart">Bag <span id="cartCount">0</span></button>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="live-dot"></span> THE EVERYDAY EDIT</p>
+        <h1>Good finds.<br><em>Better living.</em></h1>
+        <p class="hero-subtitle">Useful, well-chosen products for your space, your style and your everyday.</p>
+        <a class="primary-button" href="#shop">Explore the collection <span>↘</span></a>
+        <div class="hero-proof"><span>✦ Curated essentials</span><span>✓ Secure checkout</span></div>
+      </div>
+      <div class="hero-art" role="img" aria-label="Minimal abstract product showcase">
+        <div class="art-circle"></div><div class="art-card art-card-one"><span>THE DAILY</span><b>EDIT</b><small>01 / ESSENTIALS</small></div>
+        <div class="art-card art-card-two"><span>LESS CLUTTER</span><b>MORE<br>JOY.</b></div>
+        <div class="art-sticker">FIND<br>YOUR<br>FAVOURITE ↗</div>
+        <div class="art-number">BC—001</div>
+      </div>
+    </section>
+    <section class="trust-strip" id="benefits">
+      <div><span>↗</span><p><b>Curated picks</b><small>Useful things, chosen well</small></p></div>
+      <div><span>◇</span><p><b>Secure payments</b><small>Checkout powered by Razorpay</small></p></div>
+      <div><span>⌁</span><p><b>Order updates</b><small>Confirmation by email</small></p></div>
+      <div><span>♡</span><p><b>Here to help</b><small>Support when you need it</small></p></div>
+    </section>
+    <section class="shop-section" id="shop">
+      <div class="section-heading"><div><p class="eyebrow">THE COLLECTION</p><h2>Shop the good stuff<span>.</span></h2></div><div class="catalog-controls"><select id="categoryFilter" aria-label="Filter category"><option value="all">All categories</option></select><select id="sortFilter" aria-label="Sort products"><option value="featured">Featured</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="name">Name: A–Z</option></select></div></div>
+      <div id="statusMessage" class="status-message" role="status">Loading the collection…</div>
+      <div id="productGrid" class="product-grid"></div>
+    </section>
+    <section class="newsletter">
+      <div><p class="eyebrow">THE GOOD LIST</p><h2>Good things, occasionally.</h2><p>New drops and useful finds. No noise.</p></div>
+      <a class="secondary-button" href="mailto:hello@example.com?subject=BoldCart%20updates">Get in touch <span>↗</span></a>
+    </section>
+  </main>
+  <footer class="site-footer"><a class="brand footer-brand" href="#"><span class="brand-mark">B</span> BOLDCART<span class="brand-dot">.</span></a><p>Shop thoughtfully. Live boldly.</p><div><a href="mailto:hello@example.com">Contact</a><a href="#shop">Shop</a><a href="#benefits">Our promise</a></div><small>© <span id="year"></span> BoldCart. Replace sample policies and contact details before launch.</small></footer>
+
+  <div id="productModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="product"></div><section class="modal-panel product-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" data-close="product" aria-label="Close product details">×</button><div id="productDetail"></div>
+    </section>
+  </div>
+  <div id="cartDrawer" class="drawer" aria-hidden="true">
+    <div class="drawer-backdrop" data-close="cart"></div><aside class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="drawer-head"><div><p class="eyebrow">YOUR SELECTION</p><h2 id="cartTitle">Shopping bag</h2></div><button class="modal-close" data-close="cart" aria-label="Close cart">×</button></div>
+      <div id="cartItems" class="cart-items"></div><div class="cart-bottom"><div class="subtotal-row"><span>Subtotal</span><b id="cartSubtotal">₹0</b></div><p class="microcopy">Shipping and final total are confirmed at checkout.</p><button id="checkoutStart" class="primary-button full-button">Continue to checkout <span>→</span></button><p class="microcopy centered">Secure payment powered by Razorpay</p></div>
+    </aside>
+  </div>
+  <div id="checkoutModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="checkout"></div><section class="modal-panel checkout-panel" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <button class="modal-close" data-close="checkout" aria-label="Close checkout">×</button><p class="eyebrow">ALMOST YOURS</p><h2 id="checkoutTitle">Delivery details</h2><p class="form-intro">Enter your delivery details. Payment is completed securely through Razorpay.</p>
+      <form id="checkoutForm">
+        <div class="form-grid"><label>Full name<input name="customerName" autocomplete="name" required maxlength="100"></label><label>Email address<input name="email" type="email" autocomplete="email" required maxlength="160"></label><label>Phone number<input name="phone" type="tel" autocomplete="tel" required maxlength="20"></label><label>Postal code<input name="postalCode" autocomplete="postal-code" required maxlength="12"></label><label class="wide">Address line 1<input name="address1" autocomplete="address-line1" required maxlength="200"></label><label class="wide">Address line 2 (optional)<input name="address2" autocomplete="address-line2" maxlength="200"></label><label>City<input name="city" autocomplete="address-level2" required maxlength="80"></label><label>State<input name="state" autocomplete="address-level1" required maxlength="80"></label><label class="wide">Country<input name="country" autocomplete="country-name" value="India" required maxlength="80"></label></div>
+        <div class="checkout-total"><span>Order total</span><strong id="checkoutTotal">₹0</strong></div><button id="payButton" class="primary-button full-button" type="submit">Pay securely <span>↗</span></button><p id="checkoutMessage" class="status-message" role="status"></p><p class="microcopy centered">Your payment details are handled by Razorpay, not stored on this website.</p>
+      </form>
+    </section>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
