@@ -1,7 +1,0 @@
-name = "youcart-api"
-main = "worker.js"
-compatibility_date = "2026-11-06"
-
-[vars]
-STORE_NAME = "YouCart"
-FRONTEND_ORIGIN = "https://YOUR-USERNAME.github.io"
