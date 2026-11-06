@@ -12,7 +12,7 @@ export default {
   if(req.method==="OPTIONS")return new Response(null,{headers:{"access-control-allow-origin":"*","access-control-allow-headers":"content-type,authorization","access-control-allow-methods":"GET,POST,OPTIONS"}});
   const url=new URL(req.url);
   try{
-   if(req.method==="GET"&&url.pathname==="/api/products")return json(await getProducts(env));
+   if (   req.method === "GET" &&   (     url.pathname === "/api/products" ||     (url.pathname === "/" && url.searchParams.get("action") === "products")   ) ) {   return json(await getProducts(env)); }
    if(req.method==="POST"&&url.pathname==="/api/checkout/create"){
     const body=await req.json();const {customer,items}=body;
     if(!customer||!Array.isArray(items)||!items.length) return json({error:"Missing order details"},400);
